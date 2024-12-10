@@ -92,7 +92,7 @@ try {
    
    await query('COMMIT'); // Transaction End
 } catch (error) {
-   await query('ROLLBACK'); // Reverts changes in case of an error
+   await query('ROLLBACK'); // Reverts transaction changes in case of errors
 }
 ```
 
