@@ -65,14 +65,14 @@ await query('COMMIT'); // Transaction End
 
 ## Deployment
 
-You are now ready to deploy Tumbleweed! A Command-Line Interface (CLI) tool is provided to simplify the setup and deployment of a Tumbleweed pipeline.
-
-### Prerequisites:
+### You will need the following:
 
 * An Amazon Web Services (AWS) account
 * IP address that will have access to the Tumbleweed UI
 * Install [AWS CLI](https://aws.amazon.com/cli/)
 * Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
+You are now ready to deploy Tumbleweed! A Command-Line Interface (CLI) tool is provided to simplify the setup and deployment of a Tumbleweed pipeline.
 
 Now run the following command in your command line to get started:
 
