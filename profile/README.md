@@ -7,9 +7,9 @@ It automatically deploys a self-hosted log-based CDC pipeline that abstracts awa
 
 For more information check out our [case study](https://tumbleweed-cdc.github.io/docs/introduction/).
 
-## 👷🏻‍♂️ Tumbleweed's Architecture and Technologies
+## 👷🏻‍♂️ Architecture and Technologies
 
-Tumbleweed is powered by various open-source tools along with a custom TypeScript backend API, ensuring efficient event-driven communication and seamless deployment.
+Tumbleweed is powered by various open-source tools along with a custom TypeScript backend API and a React-based frontend UI, ensuring efficient event-driven communication and seamless deployment.
 
 * **Apache Kafka:** Log based message broker for high throughput, real-time data streaming. Decouples producer and consumer services through topic-based subscriptions.
 * **Kafka Connect:** Facilitates data transmission between Kafka and external systems using source and sink connectors.
