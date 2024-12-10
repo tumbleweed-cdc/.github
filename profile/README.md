@@ -65,7 +65,7 @@ await query('COMMIT'); // Transaction End
 
 ## Deployment
 
-### You will need the following:
+You will need the following:
 
 * An Amazon Web Services (AWS) account
 * IP address that will have access to the Tumbleweed UI
