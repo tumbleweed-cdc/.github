@@ -94,7 +94,7 @@ await query('COMMIT'); // Transaction End
 
 ## 🚀 Deployment
 
-Prerequisites:
+**Prerequisites:**
 
 * An Amazon Web Services (AWS) account
 * IP address(es) that will have access to the Tumbleweed UI
