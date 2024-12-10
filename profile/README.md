@@ -21,7 +21,7 @@ Tumbleweed is powered by various open-source tools along with a custom TypeScrip
 
 ## 🛠️ Key Features
 
-* **Log-Based Change Data Capture(CDC):** Efficient data synchronization between microservices using log-based CDC.
+* **Log-Based Change Data Capture (CDC):** Efficient data synchronization between microservices using log-based CDC.
 * **Outbox Pattern Implementation:** Outbox pattern integration ensures reliable message delivery.
 * **Abstraction of Complexities:** Simplifies the creation of outbox tables, message broker configuration, and setup of CDC tools.
 * **Drop-In Solution:** Easily integrates into existing or newly created microservice architecture without extensive modifications.
