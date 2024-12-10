@@ -68,7 +68,7 @@ await query('COMMIT'); // Transaction End
 You will need the following:
 
 * An Amazon Web Services (AWS) account
-* IP address that will have access to the Tumbleweed UI
+* IP address(es) that will have access to the Tumbleweed UI
 * Install [AWS CLI](https://aws.amazon.com/cli/)
 * Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
