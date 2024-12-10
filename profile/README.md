@@ -52,7 +52,7 @@ const newOrder = await query(`INSERT INTO orders (product_name, cost)
       VALUES ($1, $2)
       RETURNING *`, 
       [product_name, cost]
-    ); // Original insert statement
+    ); // Original query
 
 await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
       VALUES ($1, $2, $3, $4)`,
