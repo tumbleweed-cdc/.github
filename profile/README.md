@@ -114,6 +114,30 @@ The pipeline can be destroyed with the following command:
 ```
 npx tumbleweed_cdc burn
 ```
+
+## 🍽️ Consuming Data
+
+Once a consumer is created in the Tumbleweed UI, it can be clicked on to view the consumer's details, including a provided Tumbleweed endpoint URL. This URL serves as a connection point for the consumer service to receive a stream of data from the topics they are subscribed to. The necessary code to establish a Server-Sent Events (SSE) connection must be implemented in each consumer service. The implementation details may vary depending on the programming language or technology used by the microservice.
+
+Here is an example of the necessary code implemented in a JavaScript application:
+```js
+import EventSource from 'eventsource';
+
+const eventSource = new EventSource("http://127.0.0.1:4001/tumbleweed/consumer1"); // Replace URL with provided Tumbleweed endpoint URL
+
+eventSource.onmessage = (event) => { // Do something with received messages
+      const message = JSON.parse(event.data);
+      console.log('Received message:', message);
+  };
+  
+  eventSource.onerror = (error) => {
+    console.error('EventSource failed:', error);
+  };
+  
+  eventSource.onclose = () => {
+    console.log('Connection closed');
+  };
+```
 ---
 🌵 Developed By: 
 [Cruz Hernandez](https://github.com/archzedzenrun) | 
