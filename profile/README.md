@@ -85,7 +85,7 @@ const newOrder = await query(`INSERT INTO orders (product_name, cost)
 
 await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
       VALUES ($1, $2, $3, $4)`,
-      ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])] // Corresponding record being inserting into the outbox table
+      ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])]); // Corresponding record being inserting into the outbox table
 
 await query(`DELETE from outbox`); // Removes the record from the outbox table
 
