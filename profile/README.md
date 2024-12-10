@@ -75,21 +75,25 @@ Tumblweed also requires you to modify your existing database queries that involv
 
 Here's an example of adding a transaction to a JavaScript application query that inserts data into an orders table:
 ```js
-await query('BEGIN'); // Transaction Begin
-
-const newOrder = await query(`INSERT INTO orders (product_name, cost)
-      VALUES ($1, $2)
-      RETURNING *`, 
-      [product_name, cost]
-    ); // Original query
-
-await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
-      VALUES ($1, $2, $3, $4)`,
-      ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])]); // Corresponding record being inserting into the outbox table
-
-await query(`DELETE from outbox`); // Removes the record from the outbox table
-
-await query('COMMIT'); // Transaction End
+try {
+   await query('BEGIN'); // Transaction Begin
+   
+   const newOrder = await query(`INSERT INTO orders (product_name, cost)
+         VALUES ($1, $2)
+         RETURNING *`, 
+         [product_name, cost]
+       ); // Original query
+   
+   await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
+         VALUES ($1, $2, $3, $4)`,
+         ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])]); // Corresponding record being inserting into the outbox table
+   
+   await query(`DELETE from outbox`); // Removes the record from the outbox table
+   
+   await query('COMMIT'); // Transaction End
+} catch (error) {
+   await query('ROLLBACK'); // Reverts changes in case of an error
+}
 ```
 
 ## 🚀 Deployment
