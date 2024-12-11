@@ -149,7 +149,6 @@ try {
   // Reverts transaction changes in case of errors
   await query('ROLLBACK');
 }
-
 ```
 
 ## 🚀 Deployment
