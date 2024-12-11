@@ -191,13 +191,10 @@ eventSource.onmessage = (event) => {
   const message = JSON.parse(event.data);
   console.log('Received message:', message);
 };
-  
+
+// Error handling
 eventSource.onerror = (error) => {
   console.error('EventSource failed:', error);
-};
-  
-eventSource.onclose = () => {
-  console.log('Connection closed');
 };
 ```
 ---
