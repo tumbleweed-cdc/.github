@@ -68,10 +68,10 @@ Tumblweed also requires you to modify your existing database queries that involv
 1. Identify all SQL queries in your application that insert or update data in your source database.
 
 2. Modify the queries to use transactions. This will vary based on the language being used. The corresponding record should include the following:
-      * aggregatetype
-      * aggregateid
-      * type
-      * payload
+      * aggregatetype (event descriptor/topic name)
+      * aggregateid (payload id)
+      * type (event category sub-type)
+      * payload (event data as JSONB object)
 
 Here's an example of adding a transaction to a JavaScript application query that inserts data into an orders table:
 ```js
