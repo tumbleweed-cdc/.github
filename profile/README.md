@@ -63,8 +63,6 @@ Tumbleweed requires the ability to create an "outbox" table in your source datab
 
 ### 🔄 Updating Queries
 
-**REMINDER TO ADD A BIT ABOUT OUTBOX CLASS**
-
 Tumblweed also requires you to modify your existing database queries that involve create and update operations.  This involves inserting a corresponding record into the "outbox" table and then deleting it within the same transaction. 
 
 1. Identify all SQL queries in your application that insert or update data in your source database.
