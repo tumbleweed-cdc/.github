@@ -9,7 +9,7 @@ For more information check out our [case study](https://tumbleweed-cdc.github.io
 
 ## 👷🏻‍♂️ Architecture and Technologies
 
-Tumbleweed is powered by various open-source tools along with a custom TypeScript backend API and a React-based frontend UI, ensuring efficient event-driven communication and seamless deployment.
+Tumbleweed is powered by various open-source tools along with a custom TypeScript backend API and React-based frontend UI, ensuring efficient event-driven communication and seamless deployment.
 
 * **Apache Kafka:** Log based message broker for high throughput, real-time data streaming. Decouples producer and consumer services through topic-based subscriptions.
 * **Kafka Connect:** Facilitates data transmission between Kafka and external systems using source and sink connectors.
@@ -78,24 +78,80 @@ Tumblweed also requires you to modify your existing database queries that involv
 Here's an example of adding a transaction to a JavaScript application query that inserts data into an orders table:
 ```js
 try {
-   await query('BEGIN'); // Transaction Begin
+  // Transaction Begin
+  await query('BEGIN');
+
+  // Original query
+  const newOrder = await query(`INSERT INTO orders (product_name, cost)
+                                VALUES ($1, $2)
+                                RETURNING *`, 
+                                [product_name, cost]);
+
+  // Add the event to the outbox
+  await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
+        VALUES ($1, $2, $3, $4)`,
+        ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])]);
    
-   const newOrder = await query(`INSERT INTO orders (product_name, cost)
-         VALUES ($1, $2)
-         RETURNING *`, 
-         [product_name, cost]
-       ); // Original query
-   
-   await query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
-         VALUES ($1, $2, $3, $4)`,
-         ['order', newOrder.rows[0].id, 'order_created', JSON.stringify(newOrder.rows[0])]); // Corresponding record being inserting into the outbox table
-   
-   await query(`DELETE from outbox`); // Removes the record from the outbox table
-   
-   await query('COMMIT'); // Transaction End
+  // Clear the outbox table after the record has been successfully processed
+  await query(`DELETE from outbox`);
+
+  // Transaction End
+  await query('COMMIT'); 
 } catch (error) {
-   await query('ROLLBACK'); // Reverts transaction changes in case of errors
+  // Reverts transaction changes in case of errors
+  await query('ROLLBACK');
 }
+```
+**Abstract API for Outbox Events**
+
+To facilitate sending events to the outbox table, a more abstract approach may be beneficial, especially in larger applications. This provides more flexbility by allowing easier modification of the implementation details of the outbox, as well as promoting code reusability.
+
+Here is an example of a JavaScript interface implementation using a class:
+```js
+class OutboxService {
+    constructor(query) {
+        this.query = query; // Database query function
+    }
+
+    async addEvent(aggregateType, aggregateId, eventType, payload) {
+        await this.query(`INSERT INTO outbox (aggregatetype, aggregateid, type, payload)
+                          VALUES ($1, $2, $3, $4)`,
+                          [aggregateType, aggregateId, eventType, JSON.stringify(payload)]);
+    }
+
+    async clearOutbox() {
+        await this.query(`DELETE FROM outbox`);
+    }
+}
+```
+And here is an example of how it could be used within the same transaction demonstrated in the previous section:
+```js
+// Pass the query function to the service
+const outboxService = new OutboxService(query);
+
+try {
+  // Transaction Begin
+  await query('BEGIN'); 
+
+  // Original query
+  const newOrder = await query(`INSERT INTO orders (product_name, cost)
+                                VALUES ($1, $2)
+                                RETURNING *`, 
+                                [product_name, cost]);
+
+  // Add the event to the outbox
+  await outboxService.addEvent('order', newOrder.rows[0].id, 'order_created', newOrder.rows[0]);
+
+  // Clear the outbox table after the record has been successfully processed
+  await outboxService.clearOutbox();
+
+  // Transaction End
+  await query('COMMIT');
+} catch (error) {
+  // Reverts transaction changes in case of errors
+  await query('ROLLBACK');
+}
+
 ```
 
 ## 🚀 Deployment
