@@ -183,9 +183,11 @@ Here is an example of the necessary code implemented in JavaScript:
 ```js
 import EventSource from 'eventsource';
 
-const eventSource = new EventSource("http://127.0.0.1:4001/tumbleweed/consumer1"); // Replace URL with provided Tumbleweed endpoint URL
+// Replace URL with provided Tumbleweed endpoint URL
+const eventSource = new EventSource("http://127.0.0.1:4001/tumbleweed/consumer1");
 
-eventSource.onmessage = (event) => { // Do something with received messages
+// Do something with received messages
+eventSource.onmessage = (event) => {
   const message = JSON.parse(event.data);
   console.log('Received message:', message);
 };
