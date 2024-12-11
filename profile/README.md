@@ -186,7 +186,7 @@ import EventSource from 'eventsource';
 // Replace URL with provided Tumbleweed endpoint URL
 const eventSource = new EventSource("http://127.0.0.1:4001/tumbleweed/consumer1");
 
-// Do something with received messages
+// Do something when new message is received
 eventSource.onmessage = (event) => {
   const message = JSON.parse(event.data);
   console.log('Received message:', message);
