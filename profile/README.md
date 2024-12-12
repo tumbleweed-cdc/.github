@@ -177,7 +177,7 @@ The pipeline can be destroyed with the following command:
 ```
 npx tumbleweed_cdc burn
 ```
-⚠️ Destroying the pipeline will permanently delete all associated resources and data and is irreversible.
+⚠️ Destroying the pipeline will permanently delete all associated resources and data.
 
 ### 🛠️ Manual Deployment
 
