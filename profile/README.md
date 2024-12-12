@@ -122,7 +122,7 @@ class OutboxService {
     }
 }
 ```
-And here is an example of how it could be used within the same transaction demonstrated in the previous section:
+And here is an example of how it could be applied to the same transaction demonstrated in the previous section:
 ```js
 // Pass the query function to the service
 const outboxService = new OutboxService(query);
