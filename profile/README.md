@@ -180,7 +180,7 @@ npx tumbleweed_cdc burn
 
 ### Manual Deployment
 
-Tumbleweed allows for manual deployment, whether locally or to an existing server of your choice using Docker.
+Manual deployment is also an option, whether locally or to an existing server of your choice using Docker.
 
 **Prerequisites:**
 
