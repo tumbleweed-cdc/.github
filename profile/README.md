@@ -188,7 +188,7 @@ Tumbleweed allows for manual deployment, whether locally or to an existing serve
 
 <br>
 
-1. Clone this git repository to your server by running the following command in your command line:
+1. Clone the tumbleweed repository to your server by running the following command in your command line:
 
 ```
 git clone https://github.com/tumbleweed-cdc/tumbleweed
