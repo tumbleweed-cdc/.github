@@ -1,6 +1,6 @@
 ![Tumbleweed](/profile/tumbleweed_logo_rectangle.svg)
 
-## 💡 What is Tumbleweed?
+## 🌵 What is Tumbleweed?
 
 Tumbleweed is an open-source, user-friendly framework designed for fast and consistent data propagation between microservices using Change Data Capture (CDC) and the transactional outbox pattern.
 It automatically deploys a self-hosted log-based CDC pipeline that abstracts away the complexities associated with setting up and using CDC tools. It is designed to monitor changes in one or more PostgreSQL databases and sync that data to consumer microservices in near real-time.
@@ -19,7 +19,7 @@ Tumbleweed is powered by various open-source tools along with a custom TypeScrip
 * **Tumbleweed Frontend UI:** Built with React, the frontend offers a user-friendly and responsive interface, allowing users to effortlessly configure and manage their Tumbleweed pipelines.
 * **Automated Cloud Deployment:** Custom CLI tool and Terraform for provisioning and deploying Tumbleweed pipelines on AWS ECS (Elastic Cloud Services) using Fargate.
 
-## 🛠️ Key Features
+## 💡 Key Features
 
 * **Log-Based Change Data Capture (CDC):** Efficient data synchronization between microservices using log-based CDC.
 * **Outbox Pattern Implementation:** Outbox pattern integration ensures reliable message delivery.
@@ -153,7 +153,7 @@ try {
 
 ## 🚀 Deployment
 
-### Automated Deployment
+### ⚙️ Automated Deployment
 
 A Command-Line Interface (CLI) tool is provided to automatically deploy self-hosted Tumbleweed pipelines to Amazon Web Services (AWS).
 
@@ -178,7 +178,7 @@ The pipeline can be destroyed with the following command:
 npx tumbleweed_cdc burn
 ```
 
-### Manual Deployment
+### 🛠️ Manual Deployment
 
 Manual deployment is also an option, whether locally or to an existing server of your choice using Docker.
 
