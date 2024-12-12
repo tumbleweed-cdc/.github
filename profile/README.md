@@ -233,8 +233,8 @@ eventSource.onerror = (error) => {
 };
 ```
 ---
-🌵 Developed By: 
+🤝 Developed By: 
 [Cruz Hernandez](https://github.com/archzedzenrun) | 
 [Nick Perry](https://github.com/nickperry12) |
 [Paco Michelson](https://github.com/jeffbbz) |
-[Esther Kim](https://github.com/ekim1009) 🤝
+[Esther Kim](https://github.com/ekim1009)
