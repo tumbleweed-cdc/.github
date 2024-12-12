@@ -153,6 +153,10 @@ try {
 
 ## 🚀 Deployment
 
+### Automated Deployment
+
+A Command-Line Interface (CLI) tool is provided to automatically deploy self-hosted Tumbleweed pipelines to Amazon Web Services (AWS).
+
 **Prerequisites:**
 
 * An Amazon Web Services (AWS) account
@@ -160,9 +164,9 @@ try {
 * Install [AWS CLI](https://aws.amazon.com/cli/)
 * Install [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-You are now ready to deploy Tumbleweed! A Command-Line Interface (CLI) tool is provided to simplify the setup and deployment of a Tumbleweed pipeline.
+You are now ready to deploy Tumbleweed!
 
-Now run the following command in your command line to get started:
+Run the following command in your command line to get started:
 
 ```
 npx tumbleweed_cdc roll
@@ -172,6 +176,37 @@ The pipeline can be destroyed with the following command:
 
 ```
 npx tumbleweed_cdc burn
+```
+
+### Manual Deployment
+
+Tumbleweed allows for manual deployment, whether locally or to an existing server of your choice using Docker.
+
+**Prerequisites:**
+
+* Install [Docker](https://docs.docker.com/engine/install/)
+
+<br>
+
+1. Clone this git repository to your server by running the following command in your command line:
+
+```
+git clone https://github.com/tumbleweed-cdc/tumbleweed
+```
+
+2. Navigate to the `tumbleweed/docker` directory.
+
+3. Run the following command to spin up the necessary docker containers and start the application:
+
+```
+sudo docker compose up -d --build
+```
+
+4. The Tumbleweed UI can now be accessed at `localhost:3001`.
+
+Use the following command to stop the Tumbleweed application and all of its docker containers:
+```
+sudo docker compose down -v
 ```
 
 ## 🍽️ Consuming Data
